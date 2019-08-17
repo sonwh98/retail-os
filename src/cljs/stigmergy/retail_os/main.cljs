@@ -7,14 +7,16 @@
 
 (defn item-grid []
   (let [flexbox {:display :flex
-                 :background-color :green
+                 ;;:background-color :green
                  :flex-direction :row
                  :flex-wrap :wrap
                  :justify-content :flex-start}]
     [:div {:style flexbox}
      (for [i (range 126)]
        ^{:key i} [:button {:style {:flex-grow 1
-                                   :width 150}} i])]))
+                                   :padding 10
+                                   :margin 5
+                                   :min-width 100}} i])]))
 
 (defn line-item-header []
   (let [header ["Qty" "Description" "Price" "SubTotal"]]
