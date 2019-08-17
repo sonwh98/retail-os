@@ -1,7 +1,18 @@
 (ns stigmergy.retail-os.main
   (:require [reagent.core :as r]))
 
-(def state (r/atom {:line-items [{:item/name "Cookies"
+(def state (r/atom {:items [{:item/name "Cheese Burger"
+                             :item/description "Sandwich with beef and cheese"
+                             :item/price 5.00
+                             :item/image "https://cdn4.iconfinder.com/data/icons/food-and-drinks-filled-color/300/14215737Untitled-3-512.png"}
+
+                            {:item/name "Club Sandwich"
+                             :item/description "Sandwich"
+                             :item/price 5.00
+                             :item/image "https://cdn4.iconfinder.com/data/icons/food-and-drinks-filled-color/300/14215737Untitled-3-512.png"}
+                            
+                            ]
+                    :line-items [{:item/name "Cookies"
                                   :item/price 1.75
                                   :item/quantity 10}
                                  {:item/name "Pizza"
@@ -9,18 +20,22 @@
                                   :item/quantity 3}
                                  ]}))
 
-(defn item-grid []
-  (let [flexbox {:display :flex
-                 ;;:background-color :green
-                 :flex-direction :row
-                 :flex-wrap :wrap
-                 :justify-content :flex-start}]
-    [:div {:style flexbox}
+(defn item-grid [items]
+  (let [flexbox {:style {:display :flex
+                         :flex-direction :row
+                         :flex-wrap :wrap
+                         :justify-content :flex-start}}
+        style {:flex-grow 1
+               :padding 10
+               :margin 5
+               :background-color :red
+               :min-width 50
+               :max-width 50}]
+    [:div flexbox
      (for [i (range 50)]
-       ^{:key i} [:button {:style {:flex-grow 1
-                                   :padding 10
-                                   :margin 5
-                                   :min-width 100}} i])]))
+       ^{:key i} [:button {:style style
+                           :on-click #(prn "click" i)}
+                  i])]))
 
 (defn line-item-grid [line-items]
   (let [container [:div {:style {:display :grid
