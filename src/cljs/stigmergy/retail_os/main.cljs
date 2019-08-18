@@ -61,7 +61,9 @@
                                  :grid-auto-rows 15
                                  :background-color "rgba(255, 255, 255, 0.8)"
                                  :font-size 15
-                                 :text-align :left}}]
+                                 :text-align :left
+                                 :overflow-y :auto
+                                 :overflow-x :hidden}}]
         style {:style {:border-bottom "1px solid"
                        :border-left "1px solid"
                        :height 15}}
@@ -91,6 +93,7 @@
       [:div {:style {:display :grid
                      :grid-template-columns "auto minmax(300px,auto)"
                      :background-color "#2196F3"
+                     :height "100%"
                      }}
        [item-grid items]
        (line-item-grid line-items)])))
@@ -100,28 +103,4 @@
   )
 
 
-(comment
-  [[:div {:style {:border "1px solid"}} 10]
-   [:div {:style {:border "1px solid"}} "Cookies"]
-   [:div {:style {:border "1px solid"}} 100]
-   [:div {:style {:border "1px solid"}} 10]
-   [:div {:style {:border "1px solid"}} "Pizza"]
-   [:div {:style {:border "1px solid"}} 100]
-   [:div {:style {:border "1px solid"}} "Qty"]
-   [:div {:style {:border "1px solid"}} "Description"]
-   [:div {:style {:border "1px solid"}} "Price"]
-   [:div {:style {:border "1px solid"}} "SubTotal"]]
 
-  ([:div {:style {:border "1px solid", :height 15}} 1000]
-   [:div {:style {:border "1px solid", :height 15}} 100]
-   [:div {:style {:border "1px solid", :height 15}} "Pizza"]
-   [:div {:style {:border "1px solid", :height 15}} 10]
-   [:div {:style {:border "1px solid", :height 15}} 1000]
-   [:div {:style {:border "1px solid", :height 15}} 100]
-   [:div {:style {:border "1px solid", :height 15}} "Cookies"]
-   [:div {:style {:border "1px solid", :height 15}} 10]
-   [:div {:style {:border "1px solid", :height 15}} "Qty"]
-   [:div {:style {:border "1px solid", :height 15}} "Description"]
-   [:div {:style {:border "1px solid", :height 15}} "Price"]
-   [:div {:style {:border "1px solid", :height 15}} "SubTotal"])
-  )
