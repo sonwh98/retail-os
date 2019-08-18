@@ -1,5 +1,6 @@
 (ns stigmergy.retail-os.main
-  (:require [reagent.core :as r]))
+  (:require [reagent.core :as r]
+            [stigmergy.tily :as util]))
 
 (def state (r/atom {:items [{:item/name "Cheese Burger"
                              :item/description "Sandwich with beef and cheese"
@@ -20,6 +21,23 @@
                                   :item/quantity 3}
                                  ]}))
 
+(defn add-line-item [i]
+  (swap! state update-in [:line-items] 
+         (fn [line-items]
+           (let [index-line-items (util/with-index line-items)
+                 [[index line-item]] (filter (fn [[index line-item]]
+                                               (= (:item/name line-item)
+                                                  i))
+                                             index-line-items)]
+             (if index
+               (let [line-item (update-in line-item [:item/quantity] inc)]
+                 (-> line-items
+                     (util/drop-nth index)
+                     (util/insert-at index line-item)))
+               (conj line-items {:item/name i
+                                 :item/price 5.00
+                                 :item/quantity 1}))))))
+
 (defn item-grid [items]
   (let [flexbox {:style {:display :flex
                          :flex-direction :row
@@ -34,7 +52,7 @@
     [:div flexbox
      (for [i (range 50)]
        ^{:key i} [:button {:style style
-                           :on-click #(prn "click" i)}
+                           :on-click #(add-line-item i)}
                   i])]))
 
 (defn line-item-grid [line-items]
