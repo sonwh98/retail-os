@@ -1,6 +1,8 @@
 (ns stigmergy.retail-os.main
   (:require [reagent.core :as r]
-            [stigmergy.tily :as util]))
+            [stigmergy.tily :as util]
+            [goog.string :as gstring]
+            ))
 
 (def state (r/atom {:items [{:item/name "Cheese Burger"
                              :item/description "Sandwich with beef and cheese"
@@ -42,12 +44,17 @@
   (let [flexbox {:style {:display :flex
                          :flex-direction :row
                          :flex-wrap :wrap
-                         :justify-content :flex-start}}
+                         :justify-content :center}}
         style {:flex-grow 1
-               :padding 10
                :margin 5
+               :text-align :botton
                :background-color :red
-               :min-width 50
+               :background-position :center
+               :background-repeat :no-repeat
+               :background-size :cover
+               :background-image (util/format "url('%s')"
+                                              "/img/32386-sandwich-icon.png")
+               :min-width  100
                :max-width 50}]
     [:div flexbox
      (for [i (range 50)]
