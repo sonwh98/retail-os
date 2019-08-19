@@ -6,14 +6,10 @@
 
 (def state (r/atom {:items [{:item/name "Cheese Burger"
                              :item/description "Sandwich with beef and cheese"
-                             :item/price 5.00
-                             :item/image "https://cdn4.iconfinder.com/data/icons/food-and-drinks-filled-color/300/14215737Untitled-3-512.png"}
-
+                             :item/price 5.00}
                             {:item/name "Club Sandwich"
                              :item/description "Sandwich"
-                             :item/price 5.00
-                             :item/image "https://cdn4.iconfinder.com/data/icons/food-and-drinks-filled-color/300/14215737Untitled-3-512.png"}
-                            
+                             :item/price 5.00}
                             ]
                     :line-items [{:item/name "Cookies"
                                   :item/price 1.75
